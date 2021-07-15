@@ -55,8 +55,8 @@ and open the template in the editor.
                         <div class="d-flex justify-content-end social_icon">
                             <span><i id="log-facebook" class="fab fa-facebook-square"></i></span>
                             <span><i id="log-google" class="fab fa-google-plus-square" ></i></span>
-                            <span><i class="fab fa-twitter-square"></i></span>
-                            <span> <i class="fab fa-instagram"></i></span>
+                            <span><i id="log-twitter" class="fab fa-twitter-square"></i></span>
+                            <span> <i id="log-hotmail" class="fab fa-windows"></i></span>
                             <span> <i id="log-github" class="fab fa-github"></i></span>
                         </div>
                     </div>
@@ -105,16 +105,40 @@ and open the template in the editor.
                             console.error(error);
                         });
             });
-              $('#log-github').click(function (e) {
-                   var provider = new firebase.auth.GithubAuthProvider();
-                    auth.signInWithPopup(provider)
+            $('#log-github').click(function (e) {
+                var provider = new firebase.auth.GithubAuthProvider();
+                auth.signInWithPopup(provider)
                         .then((result) => {
                             console.log(result);
                         })
                         .catch(error => {
                             console.error(error);
                         });
-              });
+            });
+            $('#log-twitter').click(function (e) {
+                var provider = new firebase.auth.TwitterAuthProvider();
+                auth.signInWithPopup(provider)
+                        .then((result) => {
+                            console.log(result);
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+            });
+            $('#log-hotmail').click(function (e) {
+                var provider = new firebase.auth.OAuthProvider('microsoft.com');
+                provider.setCustomParameters({
+                    prompt: "consent",
+                    tenant: "ad52dbc0-7a9c-401d-afc7-34fdbd34836c",
+                })
+                auth.signInWithPopup(provider)
+                        .then((result) => {
+                            console.log(result);
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+            });
             /*
              function onSignIn(googleUser) {
              // Useful data for your client-side scripts:
