@@ -10,27 +10,126 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="113445739565-eorbp7ves1cl7bj5ttml387hq02qcps2.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    </head>
- <body>
-     <div>Rama Jaya</div>
-    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-    <script>
-      function onSignIn(googleUser) {
-        // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
+        <meta name="google-signin-client_id" content="113445739565-eorbp7ves1cl7bj5ttml387hq02qcps2.apps.googleusercontent.com">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!--Bootsrap 4 CDN-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <!--Fontawesome CDN-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <link href="resource/css/style.css" rel="stylesheet" type="text/css"/>
+        <!--Prueba Firebase-->
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
 
-        // The ID token you need to pass to your backend:
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
-      }
-    </script>
-  </body>
+    </head>
+    <body>
+        <div class="container">
+            <div class="d-flex justify-content-center h-100">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Inicio sesión</h3>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="USUARIO">
+
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input type="password" class="form-control" placeholder="CONTRASEÑAS">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Entrar" class="btn float-right login_btn">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-end social_icon">
+                            <span><i id="log-facebook" class="fab fa-facebook-square"></i></span>
+                            <span><i id="log-google" class="fab fa-google-plus-square" ></i></span>
+                            <span><i class="fab fa-twitter-square"></i></span>
+                            <span> <i class="fab fa-instagram"></i></span>
+                            <span> <i id="log-github" class="fab fa-github"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div id="btngoogle"class="g-signin2" data-onsuccess="onSignIn" ></div>-->
+        <script>
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            var firebaseConfig = {
+                apiKey: "AIzaSyCj-dMPf_eE8h3mSh2L1Oa3aa9OvSmV5uI",
+                authDomain: "smarthomepa-8f3e5.firebaseapp.com",
+                databaseURL: "https://smarthomepa-8f3e5-default-rtdb.firebaseio.com",
+                projectId: "smarthomepa-8f3e5",
+                storageBucket: "smarthomepa-8f3e5.appspot.com",
+                messagingSenderId: "1079642436426",
+                appId: "1:1079642436426:web:4eea47f2fa51ef7f3207b3",
+                measurementId: "G-QKP0F5C557"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            //firebase.analytics();
+
+            const auth = firebase.auth();
+            $('#log-google').click(function (e) {
+                const googleProvider = new firebase.auth.GoogleAuthProvider();
+                auth.signInWithPopup(googleProvider)
+                        .then((result) => {
+                            console.log(result);
+                            console.log(result.user);
+                            //  window.location.assign('./home.html');
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+            });
+
+            $('#log-facebook').click(function (e) {
+                var provider = new firebase.auth.FacebookAuthProvider();
+                auth.signInWithPopup(provider)
+                        .then((result) => {
+                            console.log(result);
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+            });
+              $('#log-github').click(function (e) {
+                   var provider = new firebase.auth.GithubAuthProvider();
+                    auth.signInWithPopup(provider)
+                        .then((result) => {
+                            console.log(result);
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+              });
+            /*
+             function onSignIn(googleUser) {
+             // Useful data for your client-side scripts:
+             var profile = googleUser.getBasicProfile();
+             console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+             console.log('Full Name: ' + profile.getName());
+             console.log('Given Name: ' + profile.getGivenName());
+             console.log('Family Name: ' + profile.getFamilyName());
+             console.log("Image URL: " + profile.getImageUrl());
+             console.log("Email: " + profile.getEmail());
+             // The ID token you need to pass to your backend:
+             var id_token = googleUser.getAuthResponse().id_token;
+             console.log("ID Token: " + id_token);
+             }*/
+        </script>
+
+    </body>
 </html>
