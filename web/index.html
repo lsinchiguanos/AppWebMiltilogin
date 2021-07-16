@@ -129,8 +129,8 @@ and open the template in the editor.
                 var provider = new firebase.auth.OAuthProvider('microsoft.com');
                 provider.setCustomParameters({
                     prompt: "consent",
-                    tenant: "ad52dbc0-7a9c-401d-afc7-34fdbd34836c",
-                })
+                    tenant: "ad52dbc0-7a9c-401d-afc7-34fdbd34836c"
+                });
                 auth.signInWithPopup(provider)
                         .then((result) => {
                             console.log(result);
