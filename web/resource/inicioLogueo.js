@@ -1,7 +1,7 @@
- var Datos;
+var Datos;
 $(document).ready(function () {
-   
-   var firebaseConfig = {
+
+    var firebaseConfig = {
         apiKey: "AIzaSyCj-dMPf_eE8h3mSh2L1Oa3aa9OvSmV5uI",
         authDomain: "smarthomepa-8f3e5.firebaseapp.com",
         databaseURL: "https://smarthomepa-8f3e5-default-rtdb.firebaseio.com",
@@ -19,7 +19,23 @@ $(document).ready(function () {
         const googleProvider = new firebase.auth.GoogleAuthProvider();
         auth.signInWithPopup(googleProvider)
                 .then((result) => {
-                    $('.card').html='';
+                    console.log(result);
+                    var html = "<div class=\"card-header\">" +
+                            "<h3> Inicio con: Google </h3>" +
+                            "</div><div class=\"card-body\">" +
+                            "<div class=\"input-group form-group\">" +
+                            "<label for=\"name\" style=\" color: white;\" >USUARIO: </label>" +
+                            "<input id=\"name\" type=\"text\" class=\"form-control\" placeholder=\"USUARIO: \" value=\"" + result.user.displayName + "\"/>" +
+                            "</div>" +
+                            "<div class=\"input-group form-group\">" +
+                            "<label for=\"name\" style=\" color: white;\" >EMAIL: </label>" +
+                            "<input id=\"name\" type=\"text\" class=\"form-control\" placeholder=\"EMAIL: \" value=\"" + result.user.email + "\"/>" +
+                            "</div>" +
+                            "<div class=\"input-group form-group\">" +
+                            "<img src=\"" + result.user.photoURL + "\" alt=\"IMAGEN\" width=\"100\" height=\"100\">" +
+                            "</div>" +
+                            "</div>";
+                    $('.card').html(html);
                 })
                 .catch(error => {
                     console.error(error);
@@ -30,8 +46,22 @@ $(document).ready(function () {
         auth.signInWithPopup(provider)
                 .then((result) => {
                     console.log(result);
-                    Datos = result.user;
-                    //s window.location.assign('./home.html');
+                    var html = "<div class=\"card-header\">" +
+                            "<h3> Inicio con: Google </h3>" +
+                            "</div><div class=\"card-body\">" +
+                            "<div class=\"input-group form-group\">" +
+                            "<label for=\"name\" style=\" color: white;\" >USUARIO: </label>" +
+                            "<input id=\"name\" type=\"text\" class=\"form-control\" placeholder=\"USUARIO: \" value=\"" + result.user.displayName + "\"/>" +
+                            "</div>" +
+                            "<div class=\"input-group form-group\">" +
+                            "<label for=\"name\" style=\" color: white;\" >EMAIL: </label>" +
+                            "<input id=\"name\" type=\"text\" class=\"form-control\" placeholder=\"EMAIL: \" value=\"" + result.user.email + "\"/>" +
+                            "</div>" +
+                            "<div class=\"input-group form-group\">" +
+                            "<img src=\"" + result.user.photoURL + "\" alt=\"IMAGEN\" width=\"100\" height=\"100\">" +
+                            "</div>" +
+                            "</div>";
+                    $('.card').html(html);
                 })
                 .catch(error => {
                     console.error(error);
@@ -42,8 +72,22 @@ $(document).ready(function () {
         auth.signInWithPopup(provider)
                 .then((result) => {
                     console.log(result);
-                    Datos = result.user;
-                    window.location.assign('./home.html');
+                    var html = "<div class=\"card-header\">" +
+                            "<h3> Inicio con: Google </h3>" +
+                            "</div><div class=\"card-body\">" +
+                            "<div class=\"input-group form-group\">" +
+                            "<label for=\"name\" style=\" color: white;\" >USUARIO: </label>" +
+                            "<input id=\"name\" type=\"text\" class=\"form-control\" placeholder=\"USUARIO: \" value=\"" + result.user.displayName + "\"/>" +
+                            "</div>" +
+                            "<div class=\"input-group form-group\">" +
+                            "<label for=\"name\" style=\" color: white;\" >EMAIL: </label>" +
+                            "<input id=\"name\" type=\"text\" class=\"form-control\" placeholder=\"EMAIL: \" value=\"" + result.user.email + "\"/>" +
+                            "</div>" +
+                            "<div class=\"form-group\">" +
+                            "<img src=\"" + result.user.photoURL + "\" alt=\"IMAGEN\" width=\"100\" height=\"100\">" +
+                            "</div>" +
+                            "</div>";
+                    $('.card').html(html);
                 })
                 .catch(error => {
                     console.error(error);
@@ -54,8 +98,22 @@ $(document).ready(function () {
         auth.signInWithPopup(provider)
                 .then((result) => {
                     console.log(result);
-                    Datos = result.user;
-                    window.location.assign('./home.html');
+                    var html = "<div class=\"card-header\">" +
+                            "<h3> Inicio con: Google </h3>" +
+                            "</div><div class=\"card-body\">" +
+                            "<div class=\"input-group form-group\">" +
+                            "<label for=\"name\" style=\" color: white;\">USUARIO: </label>" +
+                            "<input id=\"name\" type=\"text\" class=\"form-control\" placeholder=\"USUARIO: \" value=\"" + result.user.displayName + "\"/>" +
+                            "</div>" +
+                            "<div class=\"input-group form-group\">" +
+                            "<label for=\"name\" style=\" color: white;\" >EMAIL: </label>" +
+                            "<input id=\"name\" type=\"text\" class=\"form-control\" placeholder=\"EMAIL: \" value=\"" + result.user.email + "\"/>" +
+                            "</div>" +
+                            "<div class=\"input-group form-group\">" +
+                            "<img src=\"" + result.user.photoURL + "\" alt=\"IMAGEN\" width=\"100\" height=\"100\">" +
+                            "</div>" +
+                            "</div>";
+                    $('.card').html(html);
                 })
                 .catch(error => {
                     console.error(error);
